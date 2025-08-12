@@ -3,6 +3,7 @@ package com.desafio.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,23 +11,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.desafio.dto.transacao;
+import com.desafio.dto.*;
 
 
 @Controller
-@RequestMapping("/transacoes")
-public class transacaoController {
+public class TransacaoController {
 
-    @DeleteMapping
+    List<Transacao> transacaoList = new ArrayList<>();
+
+    @DeleteMapping("/transacao")
     public ResponseEntity<String> deleteAllTransacao() {
         // Lógica para deletar a transação
         return ResponseEntity.ok("Transações deletadas com sucesso");
     }
 
-    @PostMapping
-    public ResponseEntity<String> CriarTransacao(@RequestBody transacao transacao) {
-        List<transacao> transacaoList = new ArrayList<>();
+    @PostMapping("/transacao")
+    public ResponseEntity<String> CriarTransacao(@RequestBody Transacao transacao) {
         transacaoList.add(transacao);
         return ResponseEntity.ok("Transação criada com sucesso");
+    }
+
+    @GetMapping("/estatistica")
+    public ResponseEntity<Estatistica> getEstatistica() {
+        // Filtra as transações para manter apenas as que não são antigas
+        transacaoList.removeIf(t -> t.dataHora().isBefore(
+            java.time.Instant.now()
+                .minusSeconds(60)
+                .atOffset(t.dataHora().getOffset())
+        ));
+
+         Estatistica estatistica = new Estatistica(transacaoList);
+
+        return ResponseEntity.ok(estatistica);
     }
 }
