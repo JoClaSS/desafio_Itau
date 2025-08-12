@@ -1,4 +1,4 @@
-package com.desafio.controller;
+package com.desafio.itau.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import com.desafio.itau.dto.*;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import com.desafio.dto.*;
 
 
 @Controller
