@@ -1,7 +1,5 @@
 # desafio-itau-backend
 Itaú Unibanco - Desafio de Programação
-Este é um desafio bacana tanto de desenvolvimento de software quanto de engenharia de software. Queremos testar sua capacidade de construir um software com várias partes diferentes funcionando em conjunto!
-
 Vídeo no youtube https://youtu.be/uke3i4uOejs
 
 1. Introdução
@@ -77,6 +75,7 @@ Este endpoint deve retornar estatísticas das transações que aconteceram nos �
     "min": 12.34,
     "max": 123.56
 }
+
 Os campos no JSON acima significam o seguinte:
 
 Campo	Significado	Obrigatório?
